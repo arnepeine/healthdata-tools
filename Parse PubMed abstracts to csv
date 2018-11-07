@@ -1,0 +1,87 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled1.ipynb",
+      "version": "0.3.2",
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "metadata": {
+        "id": "JME1koXKG7H6",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 153
+        },
+        "outputId": "d746d47e-769d-4bb2-da8d-c4062ae39506"
+      },
+      "cell_type": "code",
+      "source": [
+        "!pip install xmltodict\n",
+        "!pip install pprint\n",
+        "!pip install json\n",
+        "!pip install urllib2\n"
+      ],
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Requirement already satisfied: xmltodict in /usr/local/lib/python3.6/dist-packages (0.11.0)\n",
+            "Requirement already satisfied: pprint in /usr/local/lib/python3.6/dist-packages (0.1)\n",
+            "Collecting json\n",
+            "\u001b[31m  Could not find a version that satisfies the requirement json (from versions: )\u001b[0m\n",
+            "\u001b[31mNo matching distribution found for json\u001b[0m\n",
+            "Collecting urllib2\n",
+            "\u001b[31m  Could not find a version that satisfies the requirement urllib2 (from versions: )\u001b[0m\n",
+            "\u001b[31mNo matching distribution found for urllib2\u001b[0m\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "id": "EgX_oEDkKbAj",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 54
+        },
+        "outputId": "6afe713f-3e39-4d90-b717-1f809adc94cb"
+      },
+      "cell_type": "code",
+      "source": [
+        "import xmltodict\n",
+        "import urllib.request\n",
+        "\n",
+        "file = urllib.request.urlopen('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17284678&retmode=xml&rettype=abstract')\n",
+        "data = file.read()\n",
+        "file.close()\n",
+        "\n",
+        "data = xmltodict.parse(data)\n",
+        "\n",
+        "\n",
+        "print (data)\n"
+      ],
+      "execution_count": 29,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "OrderedDict([('PubmedArticleSet', OrderedDict([('PubmedArticle', OrderedDict([('MedlineCitation', OrderedDict([('@Status', 'MEDLINE'), ('@Owner', 'NLM'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '17284678')])), ('DateCompleted', OrderedDict([('Year', '2007'), ('Month', '04'), ('Day', '05')])), ('DateRevised', OrderedDict([('Year', '2017'), ('Month', '09'), ('Day', '22')])), ('Article', OrderedDict([('@PubModel', 'Print-Electronic'), ('Journal', OrderedDict([('ISSN', OrderedDict([('@IssnType', 'Print'), ('#text', '1088-9051')])), ('JournalIssue', OrderedDict([('@CitedMedium', 'Print'), ('Volume', '17'), ('Issue', '3'), ('PubDate', OrderedDict([('Year', '2007'), ('Month', 'Mar')]))])), ('Title', 'Genome research'), ('ISOAbbreviation', 'Genome Res.')])), ('ArticleTitle', 'Sequencing and analysis of chromosome 1 of Eimeria tenella reveals a unique segmental organization.'), ('Pagination', OrderedDict([('MedlinePgn', '311-9')])), ('Abstract', OrderedDict([('AbstractText', 'Eimeria tenella is an intracellular protozoan parasite that infects the intestinal tracts of domestic fowl and causes coccidiosis, a serious and sometimes lethal enteritis. Eimeria falls in the same phylum (Apicomplexa) as several human and animal parasites such as Cryptosporidium, Toxoplasma, and the malaria parasite, Plasmodium. Here we report the sequencing and analysis of the first chromosome of E. tenella, a chromosome believed to carry loci associated with drug resistance and known to differ between virulent and attenuated strains of the parasite. The chromosome--which appears to be representative of the genome--is gene-dense and rich in simple-sequence repeats, many of which appear to give rise to repetitive amino acid tracts in the predicted proteins. Most striking is the segmentation of the chromosome into repeat-rich regions peppered with transposon-like elements and telomere-like repeats, alternating with repeat-free regions. Predicted genes differ in character between the two types of segment, and the repeat-rich regions appear to be associated with strain-to-strain variation.')])), ('AuthorList', OrderedDict([('@CompleteYN', 'Y'), ('Author', [OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Ling'), ('ForeName', 'King-Hwa'), ('Initials', 'KH'), ('AffiliationInfo', OrderedDict([('Affiliation', 'Malaysia Genome Institute, UKM-MTDC Smart Technology Centre, Universiti Kebangsaan Malaysia, 43600 UKM Bangi, Selangor DE, Malaysia.')]))]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Rajandream'), ('ForeName', 'Marie-Adele'), ('Initials', 'MA')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Rivailler'), ('ForeName', 'Pierre'), ('Initials', 'P')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Ivens'), ('ForeName', 'Alasdair'), ('Initials', 'A')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Yap'), ('ForeName', 'Soon-Joo'), ('Initials', 'SJ')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Madeira'), ('ForeName', 'Alda M B N'), ('Initials', 'AM')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Mungall'), ('ForeName', 'Karen'), ('Initials', 'K')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Billington'), ('ForeName', 'Karen'), ('Initials', 'K')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Yee'), ('ForeName', 'Wai-Yan'), ('Initials', 'WY')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Bankier'), ('ForeName', 'Alan T'), ('Initials', 'AT')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Carroll'), ('ForeName', 'Fionnadh'), ('Initials', 'F')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Durham'), ('ForeName', 'Alan M'), ('Initials', 'AM')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Peters'), ('ForeName', 'Nicholas'), ('Initials', 'N')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Loo'), ('ForeName', 'Shu-San'), ('Initials', 'SS')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Isa'), ('ForeName', 'Mohd Noor Mat'), ('Initials', 'MN')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Novaes'), ('ForeName', 'Jeniffer'), ('Initials', 'J')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Quail'), ('ForeName', 'Michael'), ('Initials', 'M')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Rosli'), ('ForeName', 'Rozita'), ('Initials', 'R')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Nor Shamsudin'), ('ForeName', 'Mariana'), ('Initials', 'M')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Sobreira'), ('ForeName', 'Tiago J P'), ('Initials', 'TJ')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Tivey'), ('ForeName', 'Adrian R'), ('Initials', 'AR')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Wai'), ('ForeName', 'Siew-Fun'), ('Initials', 'SF')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'White'), ('ForeName', 'Sarah'), ('Initials', 'S')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Wu'), ('ForeName', 'Xikun'), ('Initials', 'X')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Kerhornou'), ('ForeName', 'Arnaud'), ('Initials', 'A')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Blake'), ('ForeName', 'Damer'), ('Initials', 'D')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Mohamed'), ('ForeName', 'Rahmah'), ('Initials', 'R')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Shirley'), ('ForeName', 'Martin'), ('Initials', 'M')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Gruber'), ('ForeName', 'Arthur'), ('Initials', 'A')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Berriman'), ('ForeName', 'Matthew'), ('Initials', 'M')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Tomley'), ('ForeName', 'Fiona'), ('Initials', 'F')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Dear'), ('ForeName', 'Paul H'), ('Initials', 'PH')]), OrderedDict([('@ValidYN', 'Y'), ('LastName', 'Wan'), ('ForeName', 'Kiew-Lian'), ('Initials', 'KL')])])])), ('Language', 'eng'), ('GrantList', OrderedDict([('@CompleteYN', 'Y'), ('Grant', [OrderedDict([('GrantID', 'MC_U105131672'), ('Agency', 'Medical Research Council'), ('Country', 'United Kingdom')]), OrderedDict([('GrantID', 'S19705'), ('Agency', 'Biotechnology and Biological Sciences Research Council'), ('Country', 'United Kingdom')]), OrderedDict([('Agency', 'Wellcome Trust'), ('Country', 'United Kingdom')])])])), ('PublicationTypeList', OrderedDict([('PublicationType', [OrderedDict([('@UI', 'D003160'), ('#text', 'Comparative Study')]), OrderedDict([('@UI', 'D016428'), ('#text', 'Journal Article')]), OrderedDict([('@UI', 'D013485'), ('#text', \"Research Support, Non-U.S. Gov't\")])])])), ('ArticleDate', OrderedDict([('@DateType', 'Electronic'), ('Year', '2007'), ('Month', '02'), ('Day', '06')]))])), ('MedlineJournalInfo', OrderedDict([('Country', 'United States'), ('MedlineTA', 'Genome Res'), ('NlmUniqueID', '9518021'), ('ISSNLinking', '1088-9051')])), ('CitationSubset', 'IM'), ('CommentsCorrectionsList', OrderedDict([('CommentsCorrections', [OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Genome Res. 2000 Nov;10(11):1737-42'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '11076859')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'BMC Bioinformatics. 2005;6:31'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15713233')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Parasite Immunol. 1986 Nov;8(6):529-39'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '3543808')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nucleic Acids Res. 2005 Jul 1;33(Web Server issue):W116-20'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15980438')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nature. 2002 Oct 3;419(6906):527-31'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12368867')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Parasitol Res. 1994;80(5):366-73'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '7971922')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Parasitol Res. 2003 Aug;90(6):473-5'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12802683')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nat Genet. 2005 Sep;37(9):986-90'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '16086015')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Mol Biochem Parasitol. 1990 Jan 15;38(2):169-73'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '2325704')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nature. 2002 Jul 4;418(6893):79-85'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12097910')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'J Mol Biol. 2004 May 14;338(5):1027-36'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15111065')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nucleic Acids Res. 1999 Jan 15;27(2):573-80'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '9862982')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nucleic Acids Res. 2003 Jan 1;31(1):439-41'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12520045')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nucleic Acids Res. 1997 Mar 1;25(5):955-64'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '9023104')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Avian Pathol. 2003 Apr;32(2):115-27'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12745365')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Mol Microbiol. 2006 Apr;60(1):5-15'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '16556216')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'BMC Bioinformatics. 2004 May 14;5:59'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15144565')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nature. 2005 May 5;435(7038):43-57'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15875012')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nature. 2002 Oct 3;419(6906):498-511'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12368864')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Trends Parasitol. 2004 May;20(5):199-201'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15105014')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nucleic Acids Res. 1995 Dec 25;23(24):4992-9'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '8559656')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Exp Parasitol. 2002 Jun-Jul;101(2-3):168-73'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12427472')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Chromosome Res. 2005;13(5):517-24'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '16132816')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Bioinformatics. 2006 Feb 1;22(3):361-2'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '16332714')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Bioinformatics. 2000 Oct;16(10):944-5'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '11120685')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Parasitol Today. 1991 May;7(5):99-105'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15463458')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Int J Parasitol. 1999 Dec;29(12):1885-92'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '10961844')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Genome Res. 2000 Oct;10(10):1587-93'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '11042156')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Genome Res. 2003 Aug;13(8):1787-99'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12869580')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Bioinformatics. 2004 Nov 1;20(16):2878-9'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '15145805')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Genome Res. 2003 Mar;13(3):443-54'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '12618375')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nat Rev Genet. 2005 Oct;6(10):743-55'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '16205714')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Nature. 2001 Feb 15;409(6822):860-921'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '11237011')]))]), OrderedDict([('@RefType', 'Cites'), ('RefSource', 'Science. 2005 Jul 15;309(5733):416-22'), ('PMID', OrderedDict([('@Version', '1'), ('#text', '16020726')]))])])])), ('MeshHeadingList', OrderedDict([('MeshHeading', [OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D000818'), ('@MajorTopicYN', 'N'), ('#text', 'Animals')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D001483'), ('@MajorTopicYN', 'N'), ('#text', 'Base Sequence')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D002874'), ('@MajorTopicYN', 'N'), ('#text', 'Chromosome Mapping')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D022004'), ('@MajorTopicYN', 'N'), ('#text', 'Chromosome Structures')])), ('QualifierName', OrderedDict([('@UI', 'Q000235'), ('@MajorTopicYN', 'Y'), ('#text', 'genetics')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D019295'), ('@MajorTopicYN', 'N'), ('#text', 'Computational Biology')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D016786'), ('@MajorTopicYN', 'N'), ('#text', 'Eimeria tenella')])), ('QualifierName', OrderedDict([('@UI', 'Q000235'), ('@MajorTopicYN', 'Y'), ('#text', 'genetics')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D017125'), ('@MajorTopicYN', 'N'), ('#text', 'Genes, Protozoan')])), ('QualifierName', OrderedDict([('@UI', 'Q000235'), ('@MajorTopicYN', 'Y'), ('#text', 'genetics')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D018598'), ('@MajorTopicYN', 'N'), ('#text', 'Minisatellite Repeats')])), ('QualifierName', OrderedDict([('@UI', 'Q000235'), ('@MajorTopicYN', 'N'), ('#text', 'genetics')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D008969'), ('@MajorTopicYN', 'N'), ('#text', 'Molecular Sequence Data')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D012150'), ('@MajorTopicYN', 'N'), ('#text', 'Polymorphism, Restriction Fragment Length')]))]), OrderedDict([('DescriptorName', OrderedDict([('@UI', 'D017422'), ('@MajorTopicYN', 'N'), ('#text', 'Sequence Analysis, DNA')]))])])]))])), ('PubmedData', OrderedDict([('History', OrderedDict([('PubMedPubDate', [OrderedDict([('@PubStatus', 'pubmed'), ('Year', '2007'), ('Month', '2'), ('Day', '8'), ('Hour', '9'), ('Minute', '0')]), OrderedDict([('@PubStatus', 'medline'), ('Year', '2007'), ('Month', '4'), ('Day', '6'), ('Hour', '9'), ('Minute', '0')]), OrderedDict([('@PubStatus', 'entrez'), ('Year', '2007'), ('Month', '2'), ('Day', '8'), ('Hour', '9'), ('Minute', '0')])])])), ('PublicationStatus', 'ppublish'), ('ArticleIdList', OrderedDict([('ArticleId', [OrderedDict([('@IdType', 'pubmed'), ('#text', '17284678')]), OrderedDict([('@IdType', 'pii'), ('#text', 'gr.5823007')]), OrderedDict([('@IdType', 'doi'), ('#text', '10.1101/gr.5823007')]), OrderedDict([('@IdType', 'pmc'), ('#text', 'PMC1800922')])])]))]))]))]))])\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    }
+  ]
+}
